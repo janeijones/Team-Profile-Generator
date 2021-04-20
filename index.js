@@ -11,7 +11,7 @@ inquirer
 },
 {
     type: "input",
-    message: "Enter the team manager's id:",
+    message: "Enter the team manager's ID:",
     name: "mgrId",
 },
 {
@@ -41,9 +41,28 @@ switch (answers.position) {
             {
                 type: "input",
                 message: "Enter the intern's name:",
-
-            }
+                name: "intName",
+            },
+            {
+                type: "input",
+                message: "Enter the intern's ID:",
+                name: "intId",
+            },
+            {
+                type: "input",
+                message: "Enter the intern's email:",
+                name: "intEmail",
+            },
+            {
+                type: "input",
+                message: "Enter the intern's school:",
+                name: "intSchool",
+            },
         ])
+        .then((engineerAnswers) => {
+            console.log(answers);
+            console.log(engineerAnswers);
+        })
         break;
     case 'Engineer':
 
