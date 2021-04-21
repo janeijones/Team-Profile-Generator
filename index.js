@@ -124,25 +124,24 @@ const askEngQuestions = () => {
             }
             const engineer = new Engineer(engAnswers.engName, engAnswers.engId, engAnswers.engEmail, engAnswers.engGitHub);
             employees.push(engineer)
-            // generateHTML(employees);
 
-        //     fs.appendFileSync('./dist/sample.html', `<div class="col-6">
-        //     <div class="card mx-auto mb-3" style="width: 18rem">
-        //     <h5 class="card-header">${engineer.getName()}<br /><br />Engineer</h5>
-        //     <ul class="list-group list-group-flush">
-        //         <li class="list-group-item">ID: ${engineer.getId()}</li>
-        //         <li class="list-group-item">Email Address: ${engineer.getEmail()}</li>
-        //         <li class="list-group-item">Github: ${engineer.getGithub()}</li>
-        //     </ul>
-        //     </div>
-        //     </div>`, function (error) {
-        //         console.log(error)
-        //     })
+            fs.appendFileSync('./dist/sample.html', `<div class="col-6">
+            <div class="card mx-auto mb-3" style="width: 18rem">
+            <h5 class="card-header">${engineer.getName()}<br /><br />Engineer</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID: ${engineer.getId()}</li>
+                <li class="list-group-item">Email Address: ${engineer.getEmail()}</li>
+                <li class="list-group-item">Github: ${engineer.getGithub()}</li>
+            </ul>
+            </div>
+            </div>`, function (error) {
+                console.log(error)
+            })
 
-        // })
+        })
 
-});
-}
+};
+
 // const createManager = (manager) => {
 //     fs.appendFileSync('./dist/sample.html', `<div class="col-6">
 //     <div class="card mx-auto mb-3" style="width: 18rem">
@@ -165,7 +164,18 @@ function init() {
             const manager = new Manager(mgrAnswers.mgrName, mgrAnswers.mgrId, mgrAnswers.mgrEmail, mgrAnswers.mgrNumber)
             employees.push(manager);
             heading();
-
+            fs.appendFileSync('./dist/sample.html', `<div class="col-6">
+                    <div class="card mx-auto mb-3" style="width: 18rem">
+                    <h5 class="card-header">${manager.getName()}<br /><br />Manager</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">ID: ${manager.getId()}</li>
+                        <li class="list-group-item">Email Address: ${manager.getEmail()}</li>
+                        <li class="list-group-item">Phone Number: ${manager.getNumber()}</li>
+                    </ul>
+                    </div>
+                </div>`, function (error) {
+            console.log(error)
+        })
 
             switch (mgrAnswers.newTeamMember) {
                 case 'Intern':
