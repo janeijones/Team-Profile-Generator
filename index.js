@@ -1,6 +1,10 @@
 //packages required
 const fs = require('fs')
 const inquirer = require('inquirer')
+const Employee = require('./lib/Employee.js')
+const Intern = require('./lib/Intern.js')
+const Engineer = require('./lib/Engineer.js')
+const Manager = require('./lib/Manager.js')
 const employees = [];
 
 inquirer
@@ -33,8 +37,8 @@ inquirer
         }])
     .then((answers) => {
         console.log(answers)
-        // const manager = new Manager(answers.mgrName, answers.mgrId, answers.mgrEmail, answers.mgrNumber)
-        //employees.push(manager)
+        const manager = new Manager(answers.mgrName, answers.mgrId, answers.mgrEmail, answers.mgrNumber)
+        employees.push(manager)
         // switch to show which questions user is prompted to do
 
         const askIntQuestions = () => {
@@ -74,10 +78,10 @@ inquirer
                     } else if (internAnswers.newTeamMember === "Engineer") {
                         askEngQuestions();
                     } else {
-                        // generateTheHTML(); 
+                        console.log(employees);// generateTheHTML(); 
                     }
-                    // const intern = new Intern(internAnswers.intName, internAnswers.intId, internAnswers.intEmail, internAnswers.intSchool);
-                    //employees.push(intern)
+                    const intern = new Intern(internAnswers.intName, internAnswers.intId, internAnswers.intEmail, internAnswers.intSchool);
+                    employees.push(intern)
 
                 })
 
@@ -120,14 +124,20 @@ inquirer
                     } else if (engAnswers.newTeamMember === "Engineer") {
                         askEngQuestions();
                     } else {
-                        // generateTheHTML(); 
+                        console.log(employees);// generateTheHTML(); 
                     }
-                    // const intern = new Intern(internAnswers.intName, internAnswers.intId, internAnswers.intEmail, internAnswers.intSchool);
-                    //employees.push(intern)
+                    const engineer = new Engineer(engAnswers.engName, engAnswers.engId, engAnswers.engEmail, engAnswers.engGitHub);
+                    employees.push(engineer)
 
                 })
 
         }
+    });
+
+
+        function init() {
+
+        
 
         switch (answers.newTeamMember) {
             case 'Intern':
@@ -137,8 +147,12 @@ inquirer
                 askEngQuestions();
                 break;
             default:
+                console.log(employees);
             // generateTheHTML();
         }
-    });
+
+    }
+    
+
 
 
