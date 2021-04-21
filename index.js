@@ -5,7 +5,8 @@ const Employee = require('./lib/Employee.js')
 const Intern = require('./lib/Intern.js')
 const Engineer = require('./lib/Engineer.js')
 const Manager = require('./lib/Manager.js')
-const heading = require('./src/heading.js')
+const appendHeader = require('./src/file_header.js')
+const appendEOF = require('./src/file_end.js')
 const employees = [];
 
 const questions = ([
@@ -74,7 +75,7 @@ const askIntQuestions = () => {
             } else if (internAnswers.newTeamMember === "Engineer") {
                 askEngQuestions();
             } else {
-                console.log(employees);// generateTheHTML(); 
+                appendEOF();
             }
             const intern = new Intern(internAnswers.intName, internAnswers.intId, internAnswers.intEmail, internAnswers.intSchool);
             employees.push(intern)
@@ -133,7 +134,7 @@ const askEngQuestions = () => {
             } else if (engAnswers.newTeamMember === "Engineer") {
                 askEngQuestions();
             } else {
-                console.log(employees);// generateTheHTML(); 
+                appendEOF(); 
             }
             const engineer = new Engineer(engAnswers.engName, engAnswers.engId, engAnswers.engEmail, engAnswers.engGitHub);
             employees.push(engineer)
@@ -176,7 +177,7 @@ function init() {
         .then((mgrAnswers) => {
             const manager = new Manager(mgrAnswers.mgrName, mgrAnswers.mgrId, mgrAnswers.mgrEmail, mgrAnswers.mgrNumber)
             employees.push(manager);
-            heading();
+            appendHeader();
             fs.appendFileSync('./dist/sample.html', `<div class="col-6">
                     <div class="card mx-auto mb-3" style="width: 18rem">
                     <h5 class="card-header">${manager.getName()}<br /><br />Manager</h5>
@@ -198,8 +199,7 @@ function init() {
                     askEngQuestions();
                     break;
                 default:
-                    console.log(employees);
-                // generateHTML(employees);
+                    appendEOF();
             }
 
         })

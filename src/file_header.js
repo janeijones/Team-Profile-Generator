@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-function heading(){
+function appendHeader(){
     return fs.writeFileSync('./dist/sample.html',`<!DOCTYPE html>
    <html lang="en">
     <head>
@@ -20,4 +20,4 @@ function heading(){
     })
 }
 
-module.exports = heading;
+module.exports = appendHeader;
