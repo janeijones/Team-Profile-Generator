@@ -9,7 +9,7 @@ describe('Employee', () => {
     })
 
     describe("getName", () => {
-        it('should return name when called', () => {
+        it('should return name string when called', () => {
             const name = "Test"
             const obj = new Employee(name)
             expect(obj.getName()).toBe(name)
@@ -18,8 +18,8 @@ describe('Employee', () => {
     });
 
     describe("getId", () => {
-        it('should return id when called', () => {
-            const id = "2"
+        it('should return id number when called', () => {
+            const id = 2
             const obj = new Employee("Test", id)
             expect(obj.getId()).toBe(id)
         })
@@ -27,22 +27,22 @@ describe('Employee', () => {
     });
 
     describe("getEmail", () => {
-        it('should return email when called', () => {
+        it('should return email string when called', () => {
             const email = "test@test.com"
-            const id = "2"
+            const id = 2
             const obj = new Employee("Test", id, email)
-            expect(obj.getId()).toBe(id)
+            expect(obj.getEmail()).toBe(email)
         })
 
     });
 
     describe("getRole", () => {
-        it('should return str when called', () => {
+        it('should return stringwhen called', () => {
             const role = "Employee"
-            const id = "2"
+            const id = 2
             const email = "test@test.com"
-            const obj = new Employee("Test", id)
-            expect(obj.getId()).toBe(id)
+            const obj = new Employee("Test", id, email)
+            expect(obj.getRole()).toBe('Employee')
         })
 
     })
