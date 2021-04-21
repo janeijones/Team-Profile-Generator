@@ -36,6 +36,17 @@ describe('Employee', () => {
 
     });
 
+    describe("getRole", () => {
+        it('should return str when called', () => {
+            const role = "Employee"
+            const id = "2"
+            const email = "test@test.com"
+            const obj = new Employee("Test", id)
+            expect(obj.getId()).toBe(id)
+        })
+
+    })
+
 
 })
 
