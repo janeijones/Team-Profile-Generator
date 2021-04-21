@@ -1,6 +1,7 @@
 //packages required
 const fs = require('fs')
 const inquirer = require('inquirer')
+const employees = [];
 
 inquirer
     .prompt([
@@ -27,15 +28,16 @@ inquirer
 {
     type: "list",
     message: "Select the employee position to add:",
-    name: "position",
-    choices: ["Intern", "Engineer", "Done"]
+    name: "newTeamMember",
+    choices: ["Intern", "Engineer", "None, Exit"]
 }])
 .then((answers) => {
 console.log(answers)
-
+// const manager = new Manager(answers.mgrName, answers.mgrId, answers.mgrEmail, answers.mgrNumber)
+//employees.push(manager)
 // switch to show which questions user is prompted to do
 
-switch (answers.position) {
+switch (answers.newTeamMember) {
     case 'Intern':
         inquirer.prompt([
             {
@@ -59,9 +61,11 @@ switch (answers.position) {
                 name: "intSchool",
             },
         ])
-        .then((engineerAnswers) => {
+        .then((internAnswers) => {
             console.log(answers);
-            console.log(engineerAnswers);
+            console.log(internAnswers);
+            // const intern = new Intern(internAnswers.intName, internAnswers.intId, internAnswers.intEmail, internAnswers.intSchool);
+            //employees.push(intern)
         })
         break;
     case 'Engineer':
