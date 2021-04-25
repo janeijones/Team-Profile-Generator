@@ -27,6 +27,7 @@ Use the command line script to enter the details of an employee work team. Emplo
 ## Tests
 Video of Team Profile Generator:
 <a href="https://youtu.be/WV2Ovfbjo8k"> Youtube - TPG </a>
+** Sample HTML file generated in dist/sample.html **
 
 ## License [![License](https://img.shields.io/badge/License-MIT-pink.svg)](https://opensource.org/licenses/MIT)
 <h3> MIT: </h3>
