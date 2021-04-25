@@ -11,7 +11,9 @@ function appendHeader(){
         <title>Team Profile</title>
     </head>
     <body>
-        <heading> Team Profile </heading>
+        <div>
+        <heading><h1 class = "bg-light p-3 text-center"> Team Profile </h1></heading>
+        </div>
         <div class="container">
             <div class="row"> 
     

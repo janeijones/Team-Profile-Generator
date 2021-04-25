@@ -1,7 +1,6 @@
 //packages required
 const fs = require('fs')
 const inquirer = require('inquirer')
-const Employee = require('./lib/Employee.js')
 const Intern = require('./lib/Intern.js')
 const Engineer = require('./lib/Engineer.js')
 const Manager = require('./lib/Manager.js')
@@ -38,7 +37,7 @@ const questions = ([
     }]);
 
 
-const askIntQuestions = () => {
+const askIntQuestions = () => { //prompts user for intern questions
 
     inquirer.prompt([
         {
@@ -70,19 +69,12 @@ const askIntQuestions = () => {
     ])
         .then((internAnswers) => {
 
-            if (internAnswers.newTeamMember === "Intern") {
-                askIntQuestions();
-            } else if (internAnswers.newTeamMember === "Engineer") {
-                askEngQuestions();
-            } else {
-                appendEOF();
-            }
             const intern = new Intern(internAnswers.intName, internAnswers.intId, internAnswers.intEmail, internAnswers.intSchool);
             employees.push(intern)
 
             fs.appendFileSync('./dist/sample.html', `<div class="col-6">
             <div class="card mx-auto mb-3" style="width: 18rem">
-            <h5 class="card-header">${intern.getName()}<br /><br />Intern</h5>
+            <h5 class="card-header text-center bg-warning text-white">${intern.getName()}<br /><br />Intern</h5>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">ID: ${intern.getId()}</li>
                 <li class="list-group-item">Email Address: ${intern.getEmail()}</li>
@@ -93,11 +85,19 @@ const askIntQuestions = () => {
             console.log(error)
         })
 
+        if (internAnswers.newTeamMember === "Intern") {
+            askIntQuestions();
+        } else if (internAnswers.newTeamMember === "Engineer") {
+            askEngQuestions();
+        } else {
+            appendEOF();
+        }
+
         })
 
 }
 
-const askEngQuestions = () => {
+const askEngQuestions = () => { //prompts user for manager questions
 
     inquirer.prompt([
         {
@@ -129,19 +129,12 @@ const askEngQuestions = () => {
     ])
         .then((engAnswers) => {
 
-            if (engAnswers.newTeamMember === "Intern") {
-                askIntQuestions();
-            } else if (engAnswers.newTeamMember === "Engineer") {
-                askEngQuestions();
-            } else {
-                appendEOF(); 
-            }
             const engineer = new Engineer(engAnswers.engName, engAnswers.engId, engAnswers.engEmail, engAnswers.engGitHub);
             employees.push(engineer)
 
             fs.appendFileSync('./dist/sample.html', `<div class="col-6">
             <div class="card mx-auto mb-3" style="width: 18rem">
-            <h5 class="card-header">${engineer.getName()}<br /><br />Engineer</h5>
+            <h5 class="card-header text-center bg-primary text-white">${engineer.getName()}<br /><br />Engineer</h5>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">ID: ${engineer.getId()}</li>
                 <li class="list-group-item">Email Address: ${engineer.getEmail()}</li>
@@ -152,27 +145,21 @@ const askEngQuestions = () => {
                 console.log(error)
             })
 
+            if (engAnswers.newTeamMember === "Intern") {
+                askIntQuestions();
+            } else if (engAnswers.newTeamMember === "Engineer") {
+                askEngQuestions();
+            } else {
+                appendEOF(); 
+            }
+
         })
 
 };
 
-// const createManager = (manager) => {
-//     fs.appendFileSync('./dist/sample.html', `<div class="col-6">
-//     <div class="card mx-auto mb-3" style="width: 18rem">
-//     <h5 class="card-header">${manager.getName()}<br /><br />Manager</h5>
-//     <ul class="list-group list-group-flush">
-//         <li class="list-group-item">ID: ${manager.getId()}</li>
-//         <li class="list-group-item">Email Address: ${manager.getEmail()}</li>
-//         <li class="list-group-item">Office Number: ${manager.getOfficeNumber()}</li>
-//     </ul>
-//     </div>
-// </div>`, function (error) {
-// console.log(error)
-// })
-// }
 
 
-function init() {
+function init() { //prompts user for manager questions
     inquirer.prompt(questions)
         .then((mgrAnswers) => {
             const manager = new Manager(mgrAnswers.mgrName, mgrAnswers.mgrId, mgrAnswers.mgrEmail, mgrAnswers.mgrNumber)
@@ -180,7 +167,7 @@ function init() {
             appendHeader();
             fs.appendFileSync('./dist/sample.html', `<div class="col-6">
                     <div class="card mx-auto mb-3" style="width: 18rem">
-                    <h5 class="card-header">${manager.getName()}<br /><br />Manager</h5>
+                    <h5 class="card-header bg-danger text-center text-white">${manager.getName()}<br /><br />Manager</h5>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">ID: ${manager.getId()}</li>
                         <li class="list-group-item">Email Address: ${manager.getEmail()}</li>
@@ -206,4 +193,4 @@ function init() {
 
 }
 
-init();
+init();  //initializes app
